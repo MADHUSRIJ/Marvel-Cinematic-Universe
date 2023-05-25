@@ -1,18 +1,75 @@
+html, body {
+    caret-color: transparent;
+}
+
 body{
-    background: url('https://i.pinimg.com/564x/78/ce/db/78cedb354f395e057d51f9516dbfc942.jpg');
+    background-color: black !important;
     background-size: cover;
     backdrop-filter: blur(16px); 
-    height: 100vh;
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+}
+
+.navbar{
+    background-color: #5b0f0f87;
+    color: white;
+    box-shadow: 5px 2px 3px 3px #5757575d;
+}
+
+.nav-link, .navbar-brand{
+    color: white;
 }
 
 .contact{
-    background-color: rgba(255, 255, 255, 0.479);
-    height: 30vh;
-    width: 100vw;
-    position: fixed;
-    bottom: 0;
+    background-color: #5b0f0ff5 ;
+    width: 16vw;
+    height: 100vh;
+    overflow-y: hidden;
 }
 
-.member{
-    height: 10vh;
+.member {
+    height: 25vh; 
+    width: 25vh; 
+    background-color: rgba(247, 239, 239, 0.454);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 3px;
+    margin: 10px 0px 10px 0px;
+  }
+
+  .member:hover{
+    height: 27vh; 
+    width: 27vh; 
+    box-shadow: 5px 5px 3px 2px rgba(212, 211, 211, 0.201);
+  }
+
+  .member img {
+    height: 68%; 
+    width: 68%;
+    object-fit: fill;
+  }
+
+  .member-name{
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    padding:5px;
+    background-color: rgba(0, 0, 0, 0.47);
+  }
+.content{
+    width: 75vw;
+    margin: 10px 0px 10px 0px;
 }
+  .box{
+    height: 75vh;
+    width: 75vw;
+    background-color: #0000005d;
+  }
+
+  .hidden{
+    display: none;
+  }
