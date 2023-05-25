@@ -1,0 +1,57 @@
+@here
+Today’s Chocolate Assignment - Presidio Avengers
+
+Problem Statement:
+The Avengers are in need of your help! Thanos has gathered all six Infinity Stones and is threatening to destroy the universe. 
+You must use your JavaScript skills to create a web application that will help the Avengers stop Thanos.
+
+The application should have the following features:
+A list of all the Infinity Stones
+A map of the universe
+A way for the Avengers to track Thanos’s movements
+A way for the Avengers to communicate with each other
+The application should be responsive so that it can be used on all devices.
+
+To complete this problem statement, you will need to use the following JavaScript concepts:
+Async tasks
+Promises
+API calls
+Responsive design
+
+Hint:
+The Avengers can use a combination of these methods to track Thanos’s movements. 
+This will help them to stay one step ahead of him and to stop him from destroying the universe.
+
+Here are some specific steps that the Avengers could take to track Thanos’s movements:
+Use the Marvel API to get a list of all the Infinity Stones.
+Use the Google Maps API to get a map of the universe.
+Use the Marvel API to get the location of each Infinity Stone.
+Plot the location of each Infinity Stone on the map.
+Use the Google Maps API to track Thanos’s movements.
+If Thanos gets close to an Infinity Stone, the Avengers can send a team to stop him.
+
+Note - Last Date to submit is extended till Tomorrow midnight i.e. (24th May midnight).
+
+Submit your task on respective github repos, top three to submit will get chocolates.
+
+Points will be according to following criteria:
+Retrieve data from external APIs using async tasks or promises.
+Handle API responses and parse data to extract relevant information.
+Implement a responsive design for different screen sizes.
+Showcase creativity and user-friendly interaction in the frontend.
+Demonstrate proficiency in JavaScript fundamentals and best practices.
+
+
+public key - 16cc21ee3af49dc4b9cfaa5f9a379165
+private key - 2f9d1d07ee84b953eb75bfbb3f82f548042b2072
+md5 hash - d47927c1191f586477297ceaa7b30594
+api - developer.marvel.com
+
+Problems
+1. How to display multiple universe
+2. If we locate all the stones in world map itself, how to track thanos.
+--> Thanos will login in our account.?
+--> Something should be in movement in order to track, so what is it?
+3. How to communicate? need storage?
+--> if so, need accounts?
+--> create auth for each character?
