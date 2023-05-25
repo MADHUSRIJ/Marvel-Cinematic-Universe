@@ -16,7 +16,8 @@ body{
 }
 
 .back-arrow{
-    width: 15px;
+    width: 15px; 
+    cursor: pointer;
     height: 20px;
 }
 

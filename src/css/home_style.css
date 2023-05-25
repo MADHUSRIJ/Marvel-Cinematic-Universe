@@ -16,10 +16,10 @@ body{
 }
 
 .gauntlet{
-  height: 100vh;
-  width: 100vw;
-  animation: go 1s ease-in-out forwards;
-  object-fit: fill;
+  position: absolute;
+  background-color: black;
+  left: 30%;
+  animation: go 8s ease-in-out forwards;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,30 +29,36 @@ body{
   height: 100%;
   width: 100%;
   object-fit: fill;
+  background-color: black;
 }
 
 @keyframes go {
   0%{
     display: block;
-    height: 10vh;
-    width: 15vh;
+    height: 0vh;
+    background-color: black;
+    width: 0vh;
     transform: rotate(180deg);
   }
   50%{
     transform: rotate(0deg);
     height: 50vh;
+    background-color: black;
     width: 75vh;
   }
   100%{
     display: none;
+    background-color: transparent;
+    height: 0;
+    width: 0;
     opacity: 0;
   }
 }
 
 .main{
   background: rgba(1, 10, 62, 0.258);
-  animation: come 0s ease-in-out forwards;
-  animation-delay: 0s;
+  animation: come 8s ease-in-out forwards;
+  animation-delay: 6s;
   display: none;
   opacity: 0;
 }
@@ -94,6 +100,7 @@ body{
   padding: 10px 20px 10px 20px;
   margin: 10px;
   border-radius: 10px 0px 10px 0px;
+  cursor: pointer;
 }
 
 .button:hover{
@@ -103,4 +110,8 @@ body{
   border-radius: 10px 0px 10px 0px;
   background-color: rgb(125, 0, 0);
   color: white;
+}
+
+.hidden{
+  display: none;
 }

@@ -1,8 +1,15 @@
-// const gauntletElement = document.querySelector('.gauntlet');
+var entered = false;
 
-// gauntletElement.addEventListener('animationend', () => {
-//     gauntletElement.remove();
-// });
+const gauntletElement = document.querySelector('.gauntlet');
+
+gauntletElement.addEventListener('animationend', () => {
+    entered = true;
+    gauntletElement.remove();
+});
+
+if(entered){
+    gauntletElement.remove();
+}
 
 const stone = document.getElementById('stone');
 const thanos = document.getElementById('thanos');

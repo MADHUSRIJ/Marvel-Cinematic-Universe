@@ -6,3 +6,5 @@ form.addEventListener('submit', (e) => {
     window.location.href = './src/home.html';
   });
 
+  
+  
