@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">MCU Map</a>
+    </nav>
+  
+    <div id="map"></div>
+  
+    <script>
+      function initMap() {
+        const mapOptions = {
+          center: { lat: 0, lng: 0 }, 
+          zoom: 2 
+        };
+  
+        const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  
+        const locations = [
+          { name: 'New York', lat: 40.7128, lng: -74.0060 },
+          { name: 'Wakanda', lat: -1.9437, lng: 29.8739 },
+          { name: 'Asgard', lat: 51.5074, lng: -0.1278 },
+          { name: 'Knowhere', lat: 4.6097, lng: -74.0817 },
+        
+        ];
+
+        locations.forEach(location => {
+          new google.maps.Marker({
+            position: { lat: location.lat, lng: location.lng },
+            map: map,
+            title: location.name
+          });
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSfh59EbWyWLsuWpqMZo--JeNz0_0Psjs&callback=initMap" async defer></script>
+    <script src="src/js/script.js"></script>
+  </body>
+</html>

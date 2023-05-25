@@ -1,1 +1,62 @@
-/* Initial Stylesheet*/
+html, body {
+    caret-color: transparent;
+}
+
+body{
+    background: url('https://i.pinimg.com/564x/78/ce/db/78cedb354f395e057d51f9516dbfc942.jpg');
+    background-size: cover;
+    backdrop-filter: blur(5px); 
+}
+
+.secret-code{
+    width: 100vw;
+    height: 100vh;
+}
+
+.textField{
+    width: 70vw;
+    height: 10vh;
+    padding: 20px;
+    transform: translateY(-120px);
+    color: black;
+    border: none;
+    outline: none;
+}
+
+.textField:focus{
+    border: 3px solid rgba(35, 0, 0, 0.694);
+}
+
+.text,.textField{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.title{
+  color: #f2f2f2be;
+  display: inline-block;
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: letterAppear 8s ease-in-out forwards;
+}
+
+.sub-title {
+  color: rgba(228, 224, 224, 0.578) ;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+@keyframes letterAppear {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+  100% {
+    opacity: 1;
+    width: 100%;
+  }
+}
