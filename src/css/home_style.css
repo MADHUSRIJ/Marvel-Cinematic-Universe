@@ -57,8 +57,7 @@ body{
 
 .main{
   background: rgba(1, 10, 62, 0.258);
-  animation: come 8s ease-in-out forwards;
-  animation-delay: 6s;
+  animation: come 6s ease-in-out forwards;
   display: none;
   opacity: 0;
 }

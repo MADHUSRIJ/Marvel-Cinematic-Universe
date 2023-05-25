@@ -1,15 +1,15 @@
-var entered = false;
+// var entered = false;
 
-const gauntletElement = document.querySelector('.gauntlet');
+// const gauntletElement = document.querySelector('.gauntlet');
 
-gauntletElement.addEventListener('animationend', () => {
-    entered = true;
-    gauntletElement.remove();
-});
+// gauntletElement.addEventListener('animationend', () => {
+//     entered = true;
+//     gauntletElement.remove();
+// });
 
-if(entered){
-    gauntletElement.remove();
-}
+// if(entered){
+//     gauntletElement.remove();
+// }
 
 const stone = document.getElementById('stone');
 const thanos = document.getElementById('thanos');
