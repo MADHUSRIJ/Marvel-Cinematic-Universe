@@ -7,8 +7,7 @@ const soul = document.getElementById('soul');
 
 function display(stoneName){
     var stone = document.getElementById(stoneName);
-    stone.style.transform = 'rotateY(180deg)';
-    stone.style.backgroundColor = 'rgba(224, 120, 120, 0.621)';
+    stone.style.backgroundColor = 'rgba(64, 130, 188, 0.300)';
 
     var stone_back = document.getElementById(stoneName+' stone-back')
     stone_back.classList.remove('hidden');
@@ -19,7 +18,6 @@ function display(stoneName){
 
 function hide(stoneName){
     var stone = document.getElementById(stoneName);
-    stone.style.transform = 'rotateY(0deg)';
     stone.style.backgroundColor = 'rgba(240, 248, 255, 0.621)';
 
     var stone_back = document.getElementById(stoneName+' stone-back')

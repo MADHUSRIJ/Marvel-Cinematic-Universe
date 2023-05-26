@@ -47,6 +47,19 @@ body{
     animation: rotate 6s linear infinite;
 }
 
+.stone:hover{
+    animation: flips 0.5s forwards;
+}
+
+@keyframes flips {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotateY(180deg);
+    }
+}
+
 .stone-front,.stone-back{
     transition: transform 0.5s ease;
 }
@@ -74,7 +87,7 @@ body{
 .stone-name{
     padding: 10px;
     text-transform: capitalize;
-    background-color: rgba(124, 17, 17, 0.409);
+    background-color: rgba(99, 81, 81, 0.409);
     color: white;
     font-size: 24px;
     font-weight: bold;
