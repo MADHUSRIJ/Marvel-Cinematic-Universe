@@ -1,0 +1,105 @@
+html, body {
+    caret-color: transparent;
+}
+
+body{
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(5px); 
+    height: 100vh;
+    overflow-x: hidden;
+    width: 100vw;
+    margin: 0;
+}
+.header{
+    height: 50px;
+    animation: come 5s forwards;
+}
+
+.back-arrow{
+    width: 15px; 
+    cursor: pointer;
+    height: 20px;
+}
+
+.back-arrow img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    transform: rotate(180deg);
+}
+
+.title{
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0px 0px 0px 0px;
+}
+
+
+
+.textField{
+    width: 50vw;
+    height: 8vh;
+    padding: 20px;
+    background-color: white;
+    color: black;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+}
+
+.textField:focus{
+    border: 3px solid rgba(35, 0, 0, 0.694);
+}
+
+.text,.textField{
+    font-size: 16px;
+    text-align: left;
+}
+
+.carousel{
+    animation: come 10s forwards;
+}
+
+.card{
+    height: 250px;
+    width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: rgba(14, 87, 147, 0.447) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.text{ 
+    color: white;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    margin: 0px 10px 0px 10px;
+    overflow: hidden;
+}
+
+.avengers_imgage{
+    height: 150px;
+    width: 150px;
+    object-fit: fill;
+    border-radius: 10px;
+}
+
+@keyframes come {
+    0%{
+      display: block;
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+  }
+
