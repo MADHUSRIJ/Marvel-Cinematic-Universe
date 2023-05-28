@@ -99,3 +99,27 @@ body{
     font-weight: bold;
     margin: 0px 100px 0px 100px;
 }
+
+@media screen and (max-width:800px){
+    .stone{
+        flex-basis: calc(50% - 20px); 
+    }
+    .stone img, .stone-front img{
+        height: 100px;
+        width: 100px;
+    }
+    .stone-title{
+        font-size: 20px;
+        margin: 0px 50px 0px 50px;
+    }
+}
+
+@media screen and (max-width:500px){
+    .stone{
+        flex-basis: calc(100% - 20px);
+    }
+    .stone-title{
+        font-size: 16px;
+        margin: 0px 25px 0px 25px;
+    }
+}

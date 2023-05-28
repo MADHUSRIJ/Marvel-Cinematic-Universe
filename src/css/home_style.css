@@ -56,7 +56,7 @@ body{
 }
 
 .main{
-  background: rgba(1, 10, 62, 0.258);
+  background: black;
   animation: come 3s ease-in-out forwards;
   display: none;
   opacity: 0;
@@ -113,4 +113,25 @@ body{
 
 .hidden{
   display: none;
+}
+
+@media screen and (max-width: 1100px) {
+  body{
+    align-items: center;
+    padding: 100px 0px 100px 0px;
+  }
+  .main {
+    height: 60vh;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .avengers-image {
+    display: none;
+  }
+  .buttons{
+    justify-content: space-between;
+    margin: 50px 0px 50px 0px;
+    padding: 20px 0px 20px 0px;
+    width: 60vw;
+  }
 }
