@@ -2,6 +2,12 @@ var item = "public/characters";
 var api = `https://gateway.marvel.com/v1/${item}?ts=1&apikey=16cc21ee3af49dc4b9cfaa5f9a379165&hash=d47927c1191f586477297ceaa7b30594`;
 var avengersData = [];
 
+const back = document.getElementById('back');
+
+back.addEventListener('click',(e) => {
+    e.preventDefault();
+    window.location.href = './home.html';
+});
 
 function getData() {
   return new Promise((resolve, reject) => {
