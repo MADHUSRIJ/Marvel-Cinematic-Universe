@@ -2,9 +2,12 @@
 
 Visit Page : https://madhusrij.github.io/Marvel-Cinematic-Universe/
 
+
 Work In Progress
 
+
 Design Implementation
+
 
 [Security Page] : To implement Authorization 
 
@@ -18,5 +21,6 @@ Design Implementation
 Initially thanos be in random location and move towards the nearest stone
 
 [Map Page] : Show infinity stones in Map using json stub
+
 
 The pages are made responsive!
