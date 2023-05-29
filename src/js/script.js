@@ -1,3 +1,3 @@
 setTimeout(function() {
-  window.location.href = './src/home.html'; 
+  window.location.href = './src/avengers.html'; 
 }, 5000);

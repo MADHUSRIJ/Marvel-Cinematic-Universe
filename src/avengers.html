@@ -6,25 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avengers</title>
     <link rel="icon" type="image/png" href="./assets/images/icon.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <link rel="stylesheet" type="text/css" href="./css/stone_style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
     <link rel="stylesheet" type="text/css" href="./css/avengers_style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  
 </head>
 <body>
     <div class="searchDiv">
         <div class="head">
-            <div class="back-arrow d-flex flex-row justify-content-start flex-wrap align-items-center" id="back">
-                <img src="assets/images/back-black.png">
-            </div>
             <form id="myForm">
                 <input type="text" id="code" class="textField code" placeholder="Search">
             </form>
         </div>
-        <div class="avengers-card" style="margin-top: 30px;" id="Notification" onclick="NotificationCard()">
+        <div class="avengers-card" style="margin-top: 20px;" id="Notification" onclick="NotificationCard()">
             <div class="avengers-image">
                 <img src="https://png.pngtree.com/png-vector/20230117/ourmid/pngtree-3d-stereo-bell-message-notification-png-image_6156864.png">
             </div>
             <div class="avengers-name">
-                Notification
+                Avengers Board
             </div>
         </div>
         <div class="searchList" id="searchList">
@@ -33,12 +35,22 @@
     </div>
     <div class="main">
         <div  class="name">
-            <div class="avengers-card">
-                <div class="avengers-image">
-                    <img src="https://png.pngtree.com/png-vector/20230117/ourmid/pngtree-3d-stereo-bell-message-notification-png-image_6156864.png">
+            <div class="titles">
+                <div class="avengers-card">
+                    <div class="avengers-image">
+                        <img src="https://png.pngtree.com/png-vector/20230117/ourmid/pngtree-3d-stereo-bell-message-notification-png-image_6156864.png">
+                    </div>
+                    <div class="avengers-name">
+                        Avengers Board
+                    </div>
                 </div>
-                <div class="avengers-name">
-                    Notification
+            </div>
+            <div class="icons">
+                <div class="option-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/235/235861.png" id="thanos">
+                </div>
+                <div class="option-icon">
+                    <img src="https://img.etimg.com/thumb/msid-68703370,width-640,resizemode-4,imgsize-142339/what-infinity-stones-mean.jpg" id="stone">
                 </div>
             </div>
         </div>
@@ -49,8 +61,80 @@
             </div>
         </div>
     </div>
+
+
+
+    <div class="thanos-dialog-overlay">
+        <div class="thanos-dialog-box">
+            <div class="map-main d-flex flex-column justify-content-center align-items-center my-5">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stone-dialog-overlay">
+        <div class="stone-dialog-box">
+            <div class="stone-main d-flex flex-row justify-content-center align-items-center my-5">
+                <div class="stone space flip" id="space">
+                    <div id="space stone-front" class="stone-front">
+                      <img class="" src="./assets/images/Space_Stone_VFX.png" alt="ss">
+                    </div>
+                    <div id="space stone-back" class="stone-back hidden">
+                        <p class="stone-name">Space Stone</p>
+                    </div>
+                  </div>
+                <div class="stone" id="mind">
+                    <div id="mind stone-front" class="stone-front">
+                        <img class="" src="./assets/images/Mind_Stone_VFX.png" alt="ss">
+                    </div>
+                      <div id="mind stone-back" class="stone-back hidden">
+                          <p class="stone-name">Mind Stone</p>
+                      </div>
+                </div>
+                <div class="stone" id="power">
+                    <div id="power stone-front" class="stone-front">
+                        <img class="" src="./assets/images/Power_Stone_VFX.png"  alt="ss">
+                    </div>
+                      <div id="power stone-back" class="stone-back hidden">
+                          <p class="stone-name">Power Stone</p>
+                      </div>
+                </div>
+                <div class="stone" id="reality">
+                    <div id="reality stone-front" class="stone-front">
+                        <img class="" src= "./assets/images/Reality_Stone_VFX.png" alt="ss">
+                    </div>
+                      <div id="reality stone-back" class="stone-back hidden">
+                          <p class="stone-name">Reality Stone</p>
+                      </div>
+                </div>
+                <div class="stone" id="time">
+                    <div id="time stone-front" class="stone-front">
+                        <img class="" src="./assets/images/Time_Stone_VFX.png" alt="ss">
+                    </div>
+                      <div id="time stone-back" class="stone-back hidden">
+                          <p class="stone-name">Time Stone</p>
+                      </div>
+                </div>
+                <div class="stone" id="soul">
+                    <div id="soul stone-front" class="stone-front">
+                        <img class="" src= "./assets/images/Soul_Stone_VFX.png" alt="ss">
+                    </div>
+                      <div id="soul stone-back" class="stone-back hidden">
+                          <p class="stone-name">Soul Stone</p>
+                      </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-     <script type="text/javascript" src="./js/avengers_script.js"></script>
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+     </script>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+     <script src="./js/thanos_script.js"></script>
+     <script src="./js/avengers_script.js"></script>
+     <script src="./js/stone_script.js"></script>
 </body>
 </html>

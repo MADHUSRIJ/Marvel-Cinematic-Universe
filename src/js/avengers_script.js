@@ -3,12 +3,6 @@ var api = `https://gateway.marvel.com/v1/${item}?ts=1&apikey=16cc21ee3af49dc4b9c
 var avengersData = [];
 var originalAvengersData = [];
 
-const back = document.getElementById('back');
-
-back.addEventListener('click', (e) => {
-  e.preventDefault();
-  window.location.href = './home.html';
-});
 
 function getData() {
   return new Promise((resolve, reject) => {
@@ -81,7 +75,7 @@ function addData(data) {
 }
 
 function onClickEvent(data) {
-  var nameElement = document.querySelector('.name');
+  var nameElement = document.querySelector('.titles');
   nameElement.innerHTML = '';
 
   var item = document.createElement('div');
@@ -104,14 +98,14 @@ function onClickEvent(data) {
 }
 
 function NotificationCard() {
-  var nameElement = document.querySelector('.name');
-  nameElement.innerHTML = '';
+  var titleElement = document.querySelector('.titles');
+  titleElement.innerHTML = '';
 
   var item = document.getElementById("Notification");
 
   var clonedItem = item.cloneNode(true);
   clonedItem.style.marginTop = ''; 
-  nameElement.appendChild(clonedItem);
+  titleElement.appendChild(clonedItem);
 }
 
  function handleChange() {
@@ -130,4 +124,4 @@ var input = document.getElementById('code');
 input.addEventListener('input', handleChange);
 
 populateCarousel();
- 
+

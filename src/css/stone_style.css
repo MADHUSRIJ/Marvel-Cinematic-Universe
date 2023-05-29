@@ -42,8 +42,8 @@ body{
 }
 
 .stone img, .stone-front img{
-    height: 120px;
-    width: 120px;
+    height: 80px;
+    width: 80px;
     object-fit: fill;
     animation: rotate 6s linear infinite;
 }
@@ -88,9 +88,8 @@ body{
 .stone-name{
     padding: 10px;
     text-transform: capitalize;
-    background-color: rgba(99, 81, 81, 0.409);
     color: white;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: bold;
 }
 

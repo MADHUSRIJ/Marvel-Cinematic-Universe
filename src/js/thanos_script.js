@@ -1,9 +1,10 @@
-const back = document.getElementById('back');
+// const back = document.getElementById('back');
 
-back.addEventListener('click',(e) => {
-    e.preventDefault();
-    window.location.href = './home.html';
-});
+// back.addEventListener('click',(e) => {
+//     e.preventDefault();
+//     window.location.href = './home.html';
+// });
+//'9131edf1a60d41109fa39d709554760a';
 
 const stones = [
   { name: "Space Stone", lat : 34.0522, lon : -118.2437 },
@@ -13,7 +14,7 @@ const stones = [
   { name: "Time Stone", lat : 52.5200, lon : 13.4050  },
   { name: "Soul Stone", lat : 65.2482, lon : -60.4621 }
 ];
-
+var mymap;
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
   const R = 6371; 
@@ -58,19 +59,19 @@ function getRandomCoordinate(min, max) {
 function getRandomLatitude() {
   return getRandomCoordinate(-90, 90);
 }
-  
+
 function getRandomLongitude() {
   return getRandomCoordinate(-180, 180);
 }
-  
-var startLatitude = getRandomLatitude();
-var startLongitude = getRandomLongitude();
-  
-console.log("Thanos Latitude:", startLatitude);
-console.log("Thanos Longitude:", startLongitude);
-var apiKey = '9131edf1a60d41109fa39d709554760a';
-var requestUrl = `https://api.opencagedata.com/geocode/v1/json?q=${startLatitude}+${startLongitude}&key=${apiKey}`;
-  
+
+function getThanosLocation(){
+
+  var startLatitude = getRandomLatitude();
+  var startLongitude = getRandomLongitude();
+
+  var apiKey = '9131edf1a60d41109fa39d709554760a';
+  var requestUrl = `https://api.opencagedata.com/geocode/v1/json?q=${startLatitude}+${startLongitude}&key=${apiKey}`;
+
   fetch(requestUrl)
     .then(response => response.json())
     .then(data => {
@@ -78,7 +79,7 @@ var requestUrl = `https://api.opencagedata.com/geocode/v1/json?q=${startLatitude
         var location = data.results[0].formatted;
         console.log('Location:', location);
   
-        var mymap = L.map('map').setView([startLatitude, startLongitude], 13);
+        mymap = L.map('map').setView([startLatitude, startLongitude], 13);
         const Icon = L.Icon.extend({
           options: {
             iconSize: [25, 40],
@@ -106,12 +107,12 @@ var requestUrl = `https://api.opencagedata.com/geocode/v1/json?q=${startLatitude
         const soulIcon = new Icon({ iconUrl: './assets/images/Soul_Stone_VFX.png' });
   
         const thanos = L.marker([startLatitude, startLongitude], { icon: thanosIcon }).bindPopup('Thanos is in ' + location).addTo(mymap);
-        const Space = L.marker([stones[0].lat, stones[0].lon], { icon: spaceIcon }).bindPopup('Space Stone is in Los Angels, US.').addTo(mymap);
-        const Mind = L.marker([stones[1].lat, stones[1].lon], { icon: mindIcon }).bindPopup('Mind Stone is Chennaic, India').addTo(mymap);
-        const Reality = L.marker([stones[2].lat, stones[2].lon], { icon: realityIcon }).bindPopup('Reality Stone is in Los Angels, US.').addTo(mymap);
-        const Power = L.marker([stones[3].lat, stones[3].lon], { icon: powerIcon }).bindPopup('Power Stone is Chennaic, India').addTo(mymap);
-        const Time = L.marker([stones[4].lat, stones[4].lon], { icon: timeIcon }).bindPopup('Time Stone is in Los Angels, US.').addTo(mymap);
-        const Soul = L.marker([stones[5].lat, stones[5].lon], { icon: soulIcon }).bindPopup('Soul Stone is Chennaic, India').addTo(mymap);
+        const Space = L.marker([stones[0].lat, stones[0].lon], { icon: spaceIcon }).bindPopup('Space Stone is in Los Angeles, US.').addTo(mymap);
+        const Mind = L.marker([stones[1].lat, stones[1].lon], { icon: mindIcon }).bindPopup('Mind Stone is in Chennai, India.').addTo(mymap);
+        const Reality = L.marker([stones[2].lat, stones[2].lon], { icon: realityIcon }).bindPopup('Reality Stone is in Seoul, South Korea.').addTo(mymap);
+        const Power = L.marker([stones[3].lat, stones[3].lon], { icon: powerIcon }).bindPopup('Power Stone is in the Arctic.').addTo(mymap);
+        const Time = L.marker([stones[4].lat, stones[4].lon], { icon: timeIcon }).bindPopup('Time Stone is in Berlin, Germany.').addTo(mymap);
+        const Soul = L.marker([stones[5].lat, stones[5].lon], { icon: soulIcon }).bindPopup('Soul Stone is in Nuuk, Greenland.').addTo(mymap);
   
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
@@ -120,14 +121,14 @@ var requestUrl = `https://api.opencagedata.com/geocode/v1/json?q=${startLatitude
         }).addTo(mymap);
   
         setTimeout(function () {
-            mymap.flyTo([closestStone.lat, closestStone.lon], 13, {
-              duration: 120, 
-              animate: true
-            });
-            setTimeout(function(){   
-              thanos.setLatLng([closestStone.lat, closestStone.lon]);
-             },12000);
-            }, 12000);
+          mymap.flyTo([closestStone.lat, closestStone.lon], 13, {
+            duration: 120, 
+            animate: true
+          });
+          setTimeout(function(){   
+            thanos.setLatLng([closestStone.lat, closestStone.lon]);
+          },12000);
+        }, 12000);
       } else {
         console.log('Unable to retrieve location information.');
       }
@@ -135,4 +136,21 @@ var requestUrl = `https://api.opencagedata.com/geocode/v1/json?q=${startLatitude
     .catch(error => {
       console.log('Error:', error);
     });
-  
+}
+
+var image = document.getElementById('thanos');
+
+var dialogOverlay = document.querySelector('.thanos-dialog-overlay');
+var dialogBox = document.querySelector('.thanos-dialog-box');
+
+image.addEventListener('click', function() {
+  getThanosLocation();
+  dialogOverlay.style.display = 'block';
+  dialogBox.style.display = 'block';
+});
+
+dialogOverlay.addEventListener('click', function() {
+  dialogOverlay.style.display = 'none';
+  dialogBox.style.display = 'none';
+  mymap.remove();
+});
