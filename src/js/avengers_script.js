@@ -1,12 +1,13 @@
 var item = "public/characters";
 var api = `https://gateway.marvel.com/v1/${item}?ts=1&apikey=16cc21ee3af49dc4b9cfaa5f9a379165&hash=d47927c1191f586477297ceaa7b30594`;
 var avengersData = [];
+var originalAvengersData = [];
 
 const back = document.getElementById('back');
 
-back.addEventListener('click',(e) => {
-    e.preventDefault();
-    window.location.href = './home.html';
+back.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.location.href = './home.html';
 });
 
 function getData() {
@@ -18,10 +19,7 @@ function getData() {
       while (i < 16) {
         var extension = `&limit=100&offset=` + 100 * i;
         var url = api + extension;
-        promises.push(
-          fetch(url)
-            .then((response) => response.json())
-        );
+        promises.push(fetch(url).then((response) => response.json()));
 
         i += 1;
       }
@@ -45,7 +43,6 @@ async function getAvengers() {
     data.forEach((response) => {
       response.data.results.forEach((result) => {
         avengersData.push(result);
-        //results.push(result.thumbnail.path+"."+result.thumbnail.extension);
       });
     });
     return avengersData;
@@ -55,53 +52,82 @@ async function getAvengers() {
 }
 
 async function populateCarousel() {
-    var carousel = document.getElementById('main');
-    await getAvengers();
-    avengersData.forEach((data) => {
-        var item = document.createElement('div');
-        item.classList.add('card');
+  await getAvengers();
+  avengersData.forEach((data) => {
+    addData(data);
+  });
+}
 
-        var image = document.createElement('img');
-        image.classList.add('avengers_imgage');
-        image.src = data.thumbnail.path+"."+data.thumbnail.extension;
+function addData(data) {
+  var carousel = document.getElementById('searchList');
+  var item = document.createElement('div');
+  item.classList.add('avengers-card');
 
-        var name = document.createElement('p');
-        name.classList.add('text');
-        name.innerHTML = data.name;
+  item.addEventListener('click', () => onClickEvent(data));
 
-        item.appendChild(image);
-        item.appendChild(name);
-        carousel.appendChild(item);
-    });
-  }
+  var imageDiv = document.createElement('div');
+  imageDiv.classList.add('avengers-image');
+  var image = document.createElement('img');
+  image.src = data.thumbnail.path + '.' + data.thumbnail.extension;
+  imageDiv.appendChild(image);
 
-  populateCarousel();
- var input = document.getElementById('code');
+  var name = document.createElement('div');
+  name.classList.add('avengers-name');
+  name.innerHTML = data.name;
+
+  item.appendChild(imageDiv);
+  item.appendChild(name);
+  carousel.appendChild(item);
+}
+
+function onClickEvent(data) {
+  var nameElement = document.querySelector('.name');
+  nameElement.innerHTML = '';
+
+  var item = document.createElement('div');
+  item.classList.add('avengers-card');
+
+  var imageDiv = document.createElement('div');
+  imageDiv.classList.add('avengers-image');
+  var image = document.createElement('img');
+  image.src = data.thumbnail.path + '.' + data.thumbnail.extension;
+  imageDiv.appendChild(image);
+
+  var name = document.createElement('div');
+  name.classList.add('avengers-name');
+  name.innerHTML = data.name;
+
+  item.appendChild(imageDiv);
+  item.appendChild(name);
+
+  nameElement.appendChild(item);
+}
+
+function NotificationCard() {
+  var nameElement = document.querySelector('.name');
+  nameElement.innerHTML = '';
+
+  var item = document.getElementById("Notification");
+
+  var clonedItem = item.cloneNode(true);
+  clonedItem.style.marginTop = ''; 
+  nameElement.appendChild(clonedItem);
+}
 
  function handleChange() {
     var inputValue = input.value.toLowerCase();
-    var carousel = document.getElementById('main');
+    var carousel = document.getElementById('searchList');
     carousel.innerHTML = '';
     avengersData.forEach((data) => {
         var characterName = data.name.toLowerCase();
         if (characterName.includes(inputValue)) {
-            var item = document.createElement('div');
-            item.classList.add('card');
-
-            var image = document.createElement('img');
-            image.classList.add('avengers_imgage');
-            image.src = data.thumbnail.path+"."+data.thumbnail.extension;
-
-            var name = document.createElement('p');
-            name.classList.add('text');
-            name.innerHTML = data.name;
-
-            item.appendChild(image);
-            item.appendChild(name);
-            carousel.appendChild(item);
+             addData(data);
         }
     });
  }
 
- input.addEventListener('input', handleChange);
+var input = document.getElementById('code');
+input.addEventListener('input', handleChange);
+
+populateCarousel();
  

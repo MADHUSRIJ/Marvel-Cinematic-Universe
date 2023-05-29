@@ -8,71 +8,155 @@ body{
     backdrop-filter: blur(5px); 
     height: 100vh;
     overflow-x: hidden;
+    display: flex;
     width: 100vw;
     margin: 0;
 }
-.header{
-    height: 50px;
-    animation: come 5s forwards;
+
+
+.searchDiv{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    min-height: 100vh;
+    border-right: 1px solid rgba(0, 0, 0, 0.258);
+    padding: 10px 10px 10px 10px;
+}
+
+.head{ 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main{
+    height: 100vh;
+
+}
+
+.chatBox{
+    position: absolute;
+    bottom: 3vh;
+    padding: 10px 20px 10px 20px;
+    margin: 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.215);
+    box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.267);
+    height: 10vh;
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name{
+    position: absolute;
+    top: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.215);
+    box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.267);
+    height: 10vh;
+    width: 100%;
 }
 
 .back-arrow{
-    width: 15px; 
+    width: 40px; 
     cursor: pointer;
-    height: 20px;
+    height: 40px;
+    padding: 10px;
 }
 
 .back-arrow img{
     width: 100%;
     height: 100%;
     object-fit: fill;
-    transform: rotate(180deg);
 }
-
-.title{
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0px 0px 0px 0px;
-}
-
-
 
 .textField{
-    width: 50vw;
-    height: 8vh;
+    width: 15vw;
+    height: 5vh;
     padding: 20px;
     background-color: white;
     color: black;
-    border-radius: 30px;
-    border: none;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.336);
     outline: none;
 }
 
-.textField:focus{
-    border: 3px solid rgba(35, 0, 0, 0.694);
-}
+
 
 .text,.textField{
     font-size: 16px;
     text-align: left;
 }
 
-.carousel{
-    animation: come 10s forwards;
-}
-
-.card{
-    height: 250px;
-    width: 200px;
-    padding: 5px;
-    border-radius: 5px;
-    margin: 10px;
-    background-color: rgba(14, 87, 147, 0.447) !important;
+.searchList {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    overflow-y: auto; 
+    scrollbar-width: thin;
+    -ms-overflow-style: none;
+    scrollbar-color: transparent transparent; 
+}
+
+.searchList::-webkit-scrollbar {
+    width: 5px; 
+}
+
+.searchList::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.searchList::-webkit-scrollbar-track {
+    background-color: transparent; 
+}
+
+
+.avengers-card {
+    padding: 10px;
+    width: 100%;
+    min-height: 10vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.116);
+    cursor: pointer;
+}
+
+.avengers-card:hover{
+    background-color: rgba(107, 107, 107, 0.135);
+}
+
+.avengers-image {
+    flex-shrink: 0;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.avengers-image img {
+    width: 100%;
+    border-radius: 50%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.send-image {
+    flex-shrink: 0;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.send-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .text{ 
@@ -86,32 +170,15 @@ body{
     overflow: hidden;
 }
 
-.avengers_imgage{
-    height: 150px;
-    width: 150px;
-    object-fit: fill;
-    border-radius: 10px;
+.MessageField{
+    height: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
 }
 
-@keyframes come {
-    0%{
-      display: block;
-      opacity: 0;
-    }
-    100%{
-      opacity: 1;
-    }
-  }
-
-@media screen and (max-width:800px){
-    .title{
-        font-size: 20px;
-        margin: 0px 50px 0px 50px;
-    }
-}
-
-@media screen and (max-width:600px){
-    .title{
-        display: none;
-    }
+.name .avengers-name{
+    margin-left: 1vw;
+    font-weight: bold;
+    color: rgb(3, 3, 60);
 }

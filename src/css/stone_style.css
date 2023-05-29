@@ -13,6 +13,7 @@ body{
 }
 .header{
     height: 50px;
+    margin: 0px 3vw 0px 1vw;
 }
 
 .back-arrow{
@@ -32,7 +33,7 @@ body{
     flex-basis: calc(33.33% - 20px); 
     height: 200px; 
     margin: 30px 10px 30px 10px;
-    background-color: rgba(240, 248, 255, 0.621);
+    background-color: rgba(240, 248, 255, 0.144);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -48,7 +49,7 @@ body{
 }
 
 .stone:hover{
-    animation: flips 0.5s forwards;
+    animation: flips 2s forwards;
 }
 
 @keyframes flips {

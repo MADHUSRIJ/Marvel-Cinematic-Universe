@@ -7,18 +7,19 @@ const soul = document.getElementById('soul');
 
 function display(stoneName){
     var stone = document.getElementById(stoneName);
-    stone.style.backgroundColor = 'rgba(64, 130, 188, 0.300)';
+    stone.style.backgroundColor = 'rgba(64, 130, 188, 0.800)';
 
     var stone_back = document.getElementById(stoneName+' stone-back')
     stone_back.classList.remove('hidden');
 
     var stone_front = document.getElementById(stoneName+' stone-front');
     stone_front.classList.add('hidden');
+
 }
 
 function hide(stoneName){
     var stone = document.getElementById(stoneName);
-    stone.style.backgroundColor = 'rgba(240, 248, 255, 0.621)';
+    stone.style.backgroundColor = 'rgba(240, 248, 255, 0.144)';
 
     var stone_back = document.getElementById(stoneName+' stone-back')
     stone_back.classList.add('hidden');
