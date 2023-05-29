@@ -5,19 +5,20 @@
 //     window.location.href = './home.html';
 // });
 //'9131edf1a60d41109fa39d709554760a';
-
 const stones = [
-  { name: "Space Stone", lat : 34.0522, lon : -118.2437 },
-  { name: "Mind Stone", lat : 13.0827, lon : 80.2707},
-  { name: "Reality Stone", lat : 37.5519, lon : 126.9918  },
-  { name: "Power Stone", lat : -76.299965, lon :	-148.003021  },
-  { name: "Time Stone", lat : 52.5200, lon : 13.4050  },
-  { name: "Soul Stone", lat : 65.2482, lon : -60.4621 }
+  { name: "Space Stone", lat: 34.0522, lon: -118.2437 },
+  { name: "Mind Stone", lat: 13.0827, lon: 80.2707 },
+  { name: "Reality Stone", lat: 37.5519, lon: 126.9918 },
+  { name: "Power Stone", lat: -76.299965, lon: -148.003021 },
+  { name: "Time Stone", lat: 52.5200, lon: 13.4050 },
+  { name: "Soul Stone", lat: 65.2482, lon: -60.4621 }
 ];
+
 var mymap;
+var thanosLocations = [];
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371; 
+  const R = 6371; // Radius of the Earth in km
   const dLat = (lat2 - lat1) * (Math.PI / 180);
   const dLon = (lon2 - lon1) * (Math.PI / 180);
   const a =
@@ -64,8 +65,7 @@ function getRandomLongitude() {
   return getRandomCoordinate(-180, 180);
 }
 
-function getThanosLocation(){
-
+function getThanosLocation() {
   var startLatitude = getRandomLatitude();
   var startLongitude = getRandomLongitude();
 
@@ -78,7 +78,18 @@ function getThanosLocation(){
       if (data.results.length > 0) {
         var location = data.results[0].formatted;
         console.log('Location:', location);
-  
+
+        const dateTime = new Date().toISOString();
+        const formattedDateTime = formatDateTime(dateTime);
+        const locationData = {
+          location: location,
+          dateTime: formattedDateTime
+        };
+
+        storeThanosLocation(locationData);
+
+        thanosLocations.push(locationData);
+
         mymap = L.map('map').setView([startLatitude, startLongitude], 13);
         const Icon = L.Icon.extend({
           options: {
@@ -96,39 +107,32 @@ function getThanosLocation(){
         });
 
         var closestStone = findClosestStone(startLatitude, startLongitude);
-        console.log("Closest Stone ",closestStone);
-  
+        console.log("Closest Stone:", closestStone);
+
         const thanosIcon = new ThanosIcon({ iconUrl: './assets/images/thanos.png' });
-        const spaceIcon = new Icon({ iconUrl: './assets/images/Space_Stone_VFX.png' });
-        const mindIcon = new Icon({ iconUrl: './assets/images/Mind_Stone_VFX.png' });
-        const realityIcon = new Icon({ iconUrl: './assets/images/Reality_Stone_VFX.png' });
-        const powerIcon = new Icon({ iconUrl: './assets/images/Power_Stone_VFX.png' });
-        const timeIcon = new Icon({ iconUrl: './assets/images/Time_Stone_VFX.png' });
-        const soulIcon = new Icon({ iconUrl: './assets/images/Soul_Stone_VFX.png' });
-  
+        const stoneIcons = stones.map(stone => new Icon({ iconUrl: `./assets/images/${stone.name.replace(/ /g, "_")}_VFX.png` }));
+
         const thanos = L.marker([startLatitude, startLongitude], { icon: thanosIcon }).bindPopup('Thanos is in ' + location).addTo(mymap);
-        const Space = L.marker([stones[0].lat, stones[0].lon], { icon: spaceIcon }).bindPopup('Space Stone is in Los Angeles, US.').addTo(mymap);
-        const Mind = L.marker([stones[1].lat, stones[1].lon], { icon: mindIcon }).bindPopup('Mind Stone is in Chennai, India.').addTo(mymap);
-        const Reality = L.marker([stones[2].lat, stones[2].lon], { icon: realityIcon }).bindPopup('Reality Stone is in Seoul, South Korea.').addTo(mymap);
-        const Power = L.marker([stones[3].lat, stones[3].lon], { icon: powerIcon }).bindPopup('Power Stone is in the Arctic.').addTo(mymap);
-        const Time = L.marker([stones[4].lat, stones[4].lon], { icon: timeIcon }).bindPopup('Time Stone is in Berlin, Germany.').addTo(mymap);
-        const Soul = L.marker([stones[5].lat, stones[5].lon], { icon: soulIcon }).bindPopup('Soul Stone is in Nuuk, Greenland.').addTo(mymap);
-  
+
+        stones.forEach((stone, index) => {
+          const marker = L.marker([stone.lat, stone.lon], { icon: stoneIcons[index] }).bindPopup(`${stone.name} is in ${stone.lat}, ${stone.lon}`).addTo(mymap);
+        });
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
           maxZoom: 18,
-          language: 'en' 
+          language: 'en'
         }).addTo(mymap);
-  
+
         setTimeout(function () {
           mymap.flyTo([closestStone.lat, closestStone.lon], 13, {
-            duration: 120, 
+            duration: 2,
             animate: true
           });
-          setTimeout(function(){   
+          setTimeout(function () {
             thanos.setLatLng([closestStone.lat, closestStone.lon]);
-          },12000);
-        }, 12000);
+          }, 2000);
+        }, 2000);
       } else {
         console.log('Unable to retrieve location information.');
       }
@@ -138,19 +142,89 @@ function getThanosLocation(){
     });
 }
 
-var image = document.getElementById('thanos');
+function storeThanosLocation(locationData) {
+  const storedLocations = localStorage.getItem('thanosLocations');
 
+  let locations = [];
+
+  if (storedLocations) {
+    locations = JSON.parse(storedLocations);
+  }
+
+  locations.push(locationData);
+  console.log("inside storage");
+  localStorage.setItem('thanosLocations', JSON.stringify(locations));
+}
+
+function displayThanosLocations() {
+  const storedLocations = localStorage.getItem('thanosLocations');
+
+  if (storedLocations) {
+    const locations = JSON.parse(storedLocations);
+    const locationList = document.getElementById('locationList');
+    let currentDate = null;
+
+    locationList.innerHTML = '';
+
+    locations.forEach((location, index) => {
+      const dateTime = new Date(location.dateTime);
+      const date = dateTime.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+      const time = dateTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+      if (date !== currentDate) {
+        const dateHeader = document.createElement('div');
+        dateHeader.classList.add('date');
+        dateHeader.textContent = date;
+        locationList.appendChild(dateHeader);
+        currentDate = date;
+      }
+
+      const listItem = document.createElement('div');
+      listItem.classList.add('locationInfo');
+
+      const infoItem = document.createElement('p');
+      infoItem.classList.add('location');
+      infoItem.textContent = `Thanos Spotted at ${location.location}`;
+      listItem.appendChild(infoItem);
+
+      const timeItem = document.createElement('p');
+      timeItem.classList.add('time');
+      timeItem.textContent = `${time}`;
+      listItem.appendChild(timeItem);
+
+      locationList.appendChild(listItem);
+    });
+  }
+}
+
+
+function formatDateTime(dateTimeString) {
+  const dateTime = new Date(dateTimeString);
+  const year = dateTime.getFullYear();
+  const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+  const day = String(dateTime.getDate()).padStart(2, '0');
+  const hours = String(dateTime.getHours() % 12 || 12).padStart(2, '0');
+  const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+  const ampm = dateTime.getHours() >= 12 ? 'PM' : 'AM';
+
+  return `${year}-${month}-${day} ${hours}:${minutes} ${ampm}`;
+}
+
+var image = document.getElementById('thanos');
 var dialogOverlay = document.querySelector('.thanos-dialog-overlay');
 var dialogBox = document.querySelector('.thanos-dialog-box');
 
-image.addEventListener('click', function() {
+image.addEventListener('click', function () {
   getThanosLocation();
   dialogOverlay.style.display = 'block';
   dialogBox.style.display = 'block';
 });
 
-dialogOverlay.addEventListener('click', function() {
+dialogOverlay.addEventListener('click', function () {
+  displayThanosLocations();
   dialogOverlay.style.display = 'none';
   dialogBox.style.display = 'none';
   mymap.remove();
 });
+
+displayThanosLocations();

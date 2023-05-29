@@ -62,6 +62,29 @@ body{
     justify-content: space-between;
     align-items: center;
 }
+.chat-main{
+    margin-top: 13vh;
+    margin-bottom: 13vh;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    height: 70vh;
+    overflow-y: auto; 
+    scrollbar-width: thin;
+    -ms-overflow-style: none;
+    scrollbar-color: transparent transparent; 
+}
+
+.chat-main::-webkit-scrollbar {
+    width: 5px; 
+}
+
+.chat-main::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.chat-main::-webkit-scrollbar-track {
+    background-color: transparent; 
+}
 
 .back-arrow{
     width: 40px; 
@@ -253,4 +276,41 @@ body{
     width: 75vw;
 }
 
-#map { height: 100%; width: 100%; object-fit: fill;}
+#map { 
+    height: 100%; 
+    width: 100%; 
+    object-fit: fill;
+}
+.date{
+    color: rgb(0, 0, 0);
+    margin-left: 35vw;
+    display: flex;
+    margin-top: 10px;
+    background-color: rgba(128, 128, 128, 0.100);
+    font-weight: bold;
+    padding: 10px 20px 10px 20px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .locationInfo {
+    margin-top: 20px;
+    display: flex;
+    background-color: rgb(2, 46, 111);
+    color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px 0px 20px;
+    border-radius: 0px 50px 50px 50px;
+  }
+  
+  .location {
+    flex-grow: 1; 
+  }
+  
+  .time {
+    font-size: 12px;
+    color: rgba(248, 248, 248, 0.539);
+    margin-left: 10px;
+    margin-top: 15px;
+  }
